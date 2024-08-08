@@ -1,3 +1,5 @@
+// hard coded products --> fo ui purposes
+
 const products = [
   {
     _id: '1',
