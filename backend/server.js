@@ -12,4 +12,6 @@ app.get('/', (req, res) => {
     res.json(products);
  })
 
+ app.get
+
  app.listen(port, () => console.log(`server running on port ${port}`));
