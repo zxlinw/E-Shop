@@ -5,11 +5,18 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "start": "node backend/server.js"
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js"
   },
   "author": "Zilin Weng",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.19.2"
+    "chokidar": "^3.6.0",
+    "express": "^4.19.2",
+    "fsevents": "^2.3.3"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.1.4"
   }
 }
