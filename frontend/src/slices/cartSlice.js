@@ -34,9 +34,13 @@ const cartSlice = createSlice({
             state.totalPrice = (Number(state.itemsPrice) + Number(state.shippingPrice) + Number(state.taxPrice)).toFixed(2);
 
             localStorage.setItem("cart", JSON.stringify(state));
+        },
+        removeFromCart: (state, action) => {
+            state.cartItems = state.cartItems.filter((x) => x._id !== action.payload);
+            localStorage.setItem("cart", JSON.stringify(state));
         }
     },
 });
 
 export default cartSlice.reducer;
-export const {addToCart} = cartSlice.actions;
+export const {addToCart, removeFromCart} = cartSlice.actions;
