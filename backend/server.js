@@ -11,9 +11,9 @@ const port = process.env.PORT || 2000;
 connectDB();
 const app = express();
 
-app.get('/', (req, res) => { 
-    res.send('API is running');
- });
+// body parser middleware
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
@@ -21,4 +21,4 @@ app.use('/api/users', userRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
- app.listen(port, () => console.log(`server running on port ${port}`));
+app.listen(port, () => console.log(`server running on port ${port}`));
