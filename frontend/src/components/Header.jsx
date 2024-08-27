@@ -1,11 +1,17 @@
 import React from 'react'
-import { Navbar, Nav, Container, Badge } from 'react-bootstrap';
+import { NavDropdown, Navbar, Nav, Container, Badge } from 'react-bootstrap';
 import { FaShoppingCart, FaUser} from 'react-icons/fa';
 import logo from '../assets/logo.png';
 import {useSelector} from 'react-redux';
+import {LinkContainer} from 'react-router-bootstrap';
 
 const Header = () => {
   const {cartItems} = useSelector((state) => state.cart);
+  const {userInfo} = useSelector((state) => state.auth);
+
+  const logoutHandler = () => {
+    console.log('logout');
+  }
 
   return (
     <header>
@@ -23,7 +29,19 @@ const Header = () => {
                                 </Badge>
                             )
                         }</Nav.Link>
+                        { userInfo ? (
+                            <NavDropdown title={userInfo.name} id='username'>
+                                <LinkContainer to='/profile'>
+                                    <NavDropdown.Item>Profile</NavDropdown.Item>
+                                </LinkContainer>
+                                <NavDropdown.Item onClick={logoutHandler}>
+                                    Logout
+                                </NavDropdown.Item>
+                            </NavDropdown>
+                        ) : (<LinkContainer to='/login'>
                         <Nav.Link href="/login"> <FaUser /> User</Nav.Link>
+                        </LinkContainer>)}
+                        
                     </Nav>
                 </Navbar.Collapse>
             </Container>
